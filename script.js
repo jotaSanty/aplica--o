@@ -21,7 +21,7 @@ function convertValues() {
 
     }
 
-    if (valueSelect.value == "euro") {
+    else if (valueSelect.value == "euro") {
         currencyValueConverted.innerHTML = new Intl.NumberFormat("de-DE", {
             style: "currency",
             currency: "EUR"
@@ -29,7 +29,7 @@ function convertValues() {
 
     }
 
-    if (valueSelect.value == "libras") {
+    else if (valueSelect.value == "libras") {
         currencyValueConverted.innerHTML = new Intl.NumberFormat("en-GB", {
             style: "currency",
             currency: "GBP"
@@ -37,12 +37,11 @@ function convertValues() {
 
     }
 
-    if (valueSelect.value == "bitcoin") {
-        currencyValueToConverted.innerHTML = new Intl.NumberFormat("pt-BR", {
-            style: "currency",
-            currency: "BRL"
-        }).format(inputCurrencyValue / bitcoinValue)
-
+    else if (valueSelect.value == "bitcoin") {
+    // Conversão de BRL para Bitcoin (1 BTC = 575740 BRL)
+    const bitcoinAmount = inputCurrencyValue / bitcoinValue;
+    const bitcoinFormatted = bitcoinAmount.toFixed(2); // Limita a 8 casas decimais
+    currencyValueConverted.innerHTML = `${bitcoinFormatted} BTC`; // Exibe o valor em Bitcoin
     }
 
     currencyValueToConverted.innerHTML = new Intl.NumberFormat("pt-BR", {
